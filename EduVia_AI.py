@@ -1,3 +1,4 @@
+import os
 import re
 import random
 import json
@@ -35,6 +36,13 @@ from langgraph.errors import GraphRecursionError
 import platform
 
 load_dotenv()
+
+try:
+    for key in ["GROQ_API_KEY", "DB_HOST", "DB_PORT", "DB_USER", "DB_PASSWORD", "DB_NAME"]:
+        if key in st.secrets:
+            os.environ[key] = str(st.secrets[key])
+except Exception:
+    pass
 
 if platform.system() == "Windows":
     pytesseract.pytesseract.tesseract_cmd = (
