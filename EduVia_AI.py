@@ -1514,7 +1514,6 @@ def render_quiz(quiz, chat_id, idx=0):
             percentage = (score / total) * 100
 
             if percentage >= 80:
-                st.balloons()
                 st.success("🌟 Excellent! Outstanding performance.")
             elif percentage >= 60:
                 st.success("👏 Very Good! Keep it up.")
