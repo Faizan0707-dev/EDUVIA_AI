@@ -1,6 +1,6 @@
 
-streamlit
-streamlit-cookies-manager
+streamlit==1.61.1
+streamlit-cookies-manager==0.2.0
 pytesseract
 PyMuPDF
 Pillow
