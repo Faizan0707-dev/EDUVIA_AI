@@ -649,15 +649,20 @@ def load_quiz_model():
 embeddings = load_embeddings()
 model = load_model()
 quiz_model = load_quiz_model()
-try:
-    cookie_password = st.secrets.get("COOKIE_PASSWORD")
-except Exception:
-    cookie_password = None
+
+cookie_password = os.getenv("COOKIE_PASSWORD")
 
 if not cookie_password:
-    print("CONFIG ERROR: COOKIE_PASSWORD is missing in .streamlit/secrets.toml")
+    try:
+        cookie_password = st.secrets.get("COOKIE_PASSWORD")
+    except Exception:
+        cookie_password = None
+
+if not cookie_password:
+    print("CONFIG ERROR: COOKIE_PASSWORD is missing")
     st.error("Service is temporarily unavailable. Please try again later.")
     st.stop()
+
 
 cookies = EncryptedCookieManager(
     prefix="eduvia_",
