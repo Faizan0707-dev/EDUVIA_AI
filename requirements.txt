@@ -12,7 +12,7 @@ langchain-groq
 langgraph
 faiss-cpu
 sentence-transformers
-duckduckgo-search
+ddgs
 python-dotenv
 mysql-connector-python
 bcrypt
