@@ -1108,7 +1108,8 @@ def run_agent(query, user_id, chat_id, chat_history):
     except GraphRecursionError:
         return "Sorry, I could not finish this request. Please rephrase your question."
     except Exception as e:
-        print(f"Agent error: {e}")
+        import traceback
+        traceback.print_exc()
         err = str(e)
         if getattr(e, "status_code", None) == 413 or "too large" in err.lower():
             return "Your message is too long. Please send a shorter message."
