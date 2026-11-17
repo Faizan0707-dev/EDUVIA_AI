@@ -625,21 +625,26 @@ def load_embeddings():
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
+
 @st.cache_resource(show_spinner=False)
 def load_model():
     return ChatGroq(
-        model="openai/gpt-oss-120b"
+        model="openai/gpt-oss-120b",
+        api_key=os.getenv("GROQ_API_KEY")
     )
+
 
 @st.cache_resource(show_spinner=False)
 def load_quiz_model():
     return ChatGroq(
         model="openai/gpt-oss-20b",
+        api_key=os.getenv("GROQ_API_KEY"),
         reasoning_effort="low",
         model_kwargs={
             "response_format": {"type": "json_object"}
         }
     )
+
 
 embeddings = load_embeddings()
 model = load_model()
